@@ -16,27 +16,17 @@
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_one__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/one */ \"./modules/one.js\");\n/* harmony import */ var _modules_two__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/two */ \"./modules/two.js\");\n\r\n\r\n\r\n\r\n(0,_modules_one__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\r\n;(0,_modules_two__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\r\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/timer */ \"./modules/timer.js\");\n\r\n\r\n\r\n\r\n(0,_modules_timer__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('28 february 2022')\r\n\r\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
-/***/ "./modules/one.js":
-/*!************************!*\
-  !*** ./modules/one.js ***!
-  \************************/
+/***/ "./modules/timer.js":
+/*!**************************!*\
+  !*** ./modules/timer.js ***!
+  \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst oneModule = () => {\r\n  const slider = 'oneModule'\r\n\r\n  console.log('oneModule')\r\n\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneModule);\n\n//# sourceURL=webpack:///./modules/one.js?");
-
-/***/ }),
-
-/***/ "./modules/two.js":
-/*!************************!*\
-  !*** ./modules/two.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst twoModule = () => {\r\nconst slider = 'twoModule'\r\n\r\nconsole.log('twoModule')\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (twoModule);\n\n//# sourceURL=webpack:///./modules/two.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst timer = (deadline) => {\r\n\r\n  const timerHours = document.getElementById('timer-hours');\r\n  const timerMinutes = document.getElementById('timer-minutes');\r\n  const timerSeconds = document.getElementById('timer-seconds');\r\n  let idInterval\r\n\r\n\r\n\r\n  const getTimeRemaining = () => {\r\n\r\n    let dateStop = new Date(deadline).getTime();\r\n    let dateNow = new Date().getTime();\r\n    let timeRemaining = (dateStop - dateNow) / 1000\r\n    let hours = Math.floor(timeRemaining / 60 / 60)\r\n    let minutes = Math.floor((timeRemaining / 60) % 60)\r\n    let seconds = Math.floor(timeRemaining % 60)\r\n\r\n    return {\r\n      timeRemaining,\r\n      hours,\r\n      minutes,\r\n      seconds\r\n    }\r\n\r\n\r\n  }\r\n\r\n\r\n  const updateClock = () => {\r\n    let getTime = getTimeRemaining()\r\n\r\n\r\n    if (getTime.hours < 10) {\r\n      timerHours.textContent = '0' + getTime.hours\r\n    } else {\r\n      timerHours.textContent = getTime.hours\r\n    }\r\n    if (getTime.minutes < 10) {\r\n      timerMinutes.textContent = '0' + getTime.minutes\r\n    } else {\r\n      timerMinutes.textContent = getTime.minutes\r\n    }\r\n    if (getTime.seconds < 10) {\r\n      timerSeconds.textContent = '0' + getTime.seconds\r\n    } else {\r\n      timerSeconds.textContent = getTime.seconds\r\n    }\r\n\r\n\r\n  }\r\n\r\n  const workClock = () => {\r\n    let getTime = getTimeRemaining()\r\n    if (getTime.timeRemaining > 0) {\r\n      idInterval = setInterval(updateClock, 1000)\r\n    } else {\r\n      clearInterval(idInterval)\r\n      timerHours.textContent = '00'\r\n      timerMinutes.textContent = '00'\r\n      timerSeconds.textContent = '00'\r\n    }\r\n  } \r\n  \r\n  workClock()\r\n\r\n}\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);\n\n//# sourceURL=webpack:///./modules/timer.js?");
 
 /***/ })
 
