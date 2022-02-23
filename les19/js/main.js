@@ -1,32 +1,26 @@
-const timerHours = document.getElementById('timer-hours');
-const timerMinutes = document.getElementById('timer-minutes');
-const timerSeconds = document.getElementById('timer-seconds');
+
 const timerDay = document.getElementById('timer-day')
 let idInterval
 const timerToday = document.getElementById("today")
-console.log(timerHours)
+const time = document.getElementById("time")
+const gud = document.getElementById("gud")
+console.log(gud)
+
 
 const getTimeRemaining = () => {
 
   let dateStop = new Date('1 januar 2023').getTime();
   let dateNow = new Date().getTime();
-  let timeRemaining = (dateStop - dateNow) / 1000
-  let hours = Math.floor((timeRemaining / 60 / 60) % 24)
-  let minutes = Math.floor((timeRemaining / 60) % 60)
-  let seconds = Math.floor(timeRemaining % 60)
+  let timeRemaining = (dateStop - dateNow) / 1000  
   let day = Math.floor((timeRemaining / 60 / 60)/24)
 
   return {
-    timeRemaining,
-    hours,
-    minutes,
-    seconds,
+    timeRemaining, 
     day
   }
 
 
 }
-
 
 const updateClock = () => {
   let getTime = getTimeRemaining()
@@ -34,26 +28,8 @@ const updateClock = () => {
   if (getTime.day < 10) {
     timerDay.textContent = '0' + getTime.day
   } else {
-    timerDay.textContent = getTime.day
+    timerDay.textContent = getTime.day+ 'Дней'
   }
-
-
-  if (getTime.hours < 10) {
-    timerHours.textContent = '0' + getTime.hours
-  } else {
-    timerHours.textContent = getTime.hours
-  }
-  if (getTime.minutes < 10) {
-    timerMinutes.textContent = '0' + getTime.minutes
-  } else {
-    timerMinutes.textContent = getTime.minutes
-  }
-  if (getTime.seconds < 10) {
-    timerSeconds.textContent = '0' + getTime.seconds
-  } else {
-    timerSeconds.textContent = getTime.seconds
-  }
-
 
 }
 
@@ -101,6 +77,15 @@ const dataTime = function () {
     } else return time
 
   }
+  function gudDay() {
+    
+    if (hourNum >= 4 && hourNum < 11) return 'Доброе утро!'
+    else if (hourNum >= 11 && hourNum < 17) return 'Добрый день!'
+    else if (hourNum >= 17 && hourNum < 24)
+      return 'Добрый вечер!'
+    else return 'Доброй ночи!'
+
+  }
 
   let minuteNum = check(minute)
   let hourNum = check(hour)
@@ -109,8 +94,14 @@ const dataTime = function () {
  
 
   
-  timerToday.textContent = ` Сегодня ${weekDayVariable} - ${hourNum} : ${minuteNum} : ${secondsNum} `
+  timerToday.textContent = ` Сегодня ${weekDayVariable} `
   console.log(weekDayVariable)
+
+  time.textContent = ` Текущее время:  ${hourNum} : ${minuteNum} : ${secondsNum} `
+  
+
+  gud.textContent=`${gudDay()}`
+  console.log(gud.textContent) 
 
 
 }
