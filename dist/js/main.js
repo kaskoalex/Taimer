@@ -7,6 +7,7 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./index.js":
@@ -15,7 +16,6 @@
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/timer */ \"./modules/timer.js\");\n/* harmony import */ var _modules_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/menu */ \"./modules/menu.js\");\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal */ \"./modules/modal.js\");\n/* harmony import */ var _modules_valid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/valid */ \"./modules/valid.js\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n(0,_modules_timer__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('28 february 2022')\r\n;(0,_modules_menu__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\r\n;(0,_modules_modal__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\r\n;(0,_modules_valid__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\r\n\r\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
@@ -26,7 +26,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst menu = () => {\r\n  const menuBtn = document.querySelector('.menu')\r\n  const menu = document.querySelector('menu')\r\n  const closeBtn =menu.querySelector('.close-btn')\r\n  const menuItems = menu.querySelectorAll('ul>li>a')\r\n\r\n  const handleMenu =()=> {\r\n    // if (!menu.style.transform) {\r\n    //   menu.style.transform = 'translateX(0)'\r\n    // } else {\r\n    //   menu.style.transform = ''\r\n    // }\r\n    menu.classList.toggle('active-menu')\r\n\r\n  }\r\n\r\n  menuBtn.addEventListener('click', handleMenu)\r\n\r\n  closeBtn.addEventListener('click', handleMenu)\r\n\r\n  menuItems.forEach(menuItem => menuItem.addEventListener('click', handleMenu))\r\n\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (menu);\n\n//# sourceURL=webpack:///./modules/menu.js?");
 
 /***/ }),
@@ -37,7 +36,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst modal = () => {\r\n  const modal = document.querySelector('.popup')\r\n  const buttons = document.querySelectorAll('.popup-btn')\r\n  const closeBtn = modal.querySelector('.popup-close')\r\n  const popupContent = modal.querySelector('.popup-content')\r\n  let count = 0\r\n  let idInterval\r\n\r\n  const flayAnimate = () => {\r\n    count++\r\n    idInterval = requestAnimationFrame(flayAnimate)\r\n    popupContent.style.top = '-90%'\r\n\r\n    if (count < 15) {\r\n      popupContent.style.top = count + '%'\r\n\r\n    } else {\r\n      cancelAnimationFrame(idInterval)\r\n      popupContent.style.top = '15%'\r\n    }\r\n  }\r\n\r\n\r\n  buttons.forEach(btn => {\r\n    btn.addEventListener('click', () => {\r\n      modal.style.display = 'block'\r\n      if (window.screen.width > 768) {\r\n        flayAnimate()\r\n      }\r\n\r\n    })\r\n  })\r\n\r\n  closeBtn.addEventListener('click', () => {\r\n    modal.style.display = 'none'\r\n    count = 0\r\n\r\n  })\r\n  \r\n\r\n\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\n\n//# sourceURL=webpack:///./modules/modal.js?");
 
 /***/ }),
@@ -48,7 +46,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst timer = (deadline) => {\r\n\r\n  const timerHours = document.getElementById('timer-hours');\r\n  const timerMinutes = document.getElementById('timer-minutes');\r\n  const timerSeconds = document.getElementById('timer-seconds');\r\n  let idInterval\r\n\r\n\r\n\r\n  const getTimeRemaining = () => {\r\n\r\n    let dateStop = new Date(deadline).getTime();\r\n    let dateNow = new Date().getTime();\r\n    let timeRemaining = (dateStop - dateNow) / 1000\r\n    let hours = Math.floor(timeRemaining / 60 / 60)\r\n    let minutes = Math.floor((timeRemaining / 60) % 60)\r\n    let seconds = Math.floor(timeRemaining % 60)\r\n\r\n    return {\r\n      timeRemaining,\r\n      hours,\r\n      minutes,\r\n      seconds\r\n    }\r\n\r\n\r\n  }\r\n\r\n\r\n  const updateClock = () => {\r\n    let getTime = getTimeRemaining()\r\n\r\n\r\n    if (getTime.hours < 10) {\r\n      timerHours.textContent = '0' + getTime.hours\r\n    } else {\r\n      timerHours.textContent = getTime.hours\r\n    }\r\n    if (getTime.minutes < 10) {\r\n      timerMinutes.textContent = '0' + getTime.minutes\r\n    } else {\r\n      timerMinutes.textContent = getTime.minutes\r\n    }\r\n    if (getTime.seconds < 10) {\r\n      timerSeconds.textContent = '0' + getTime.seconds\r\n    } else {\r\n      timerSeconds.textContent = getTime.seconds\r\n    }\r\n\r\n\r\n  }\r\n\r\n  const workClock = () => {\r\n    let getTime = getTimeRemaining()\r\n    if (getTime.timeRemaining > 0) {\r\n      idInterval = setInterval(updateClock, 1000)\r\n    } else {\r\n      clearInterval(idInterval)\r\n      timerHours.textContent = '00'\r\n      timerMinutes.textContent = '00'\r\n      timerSeconds.textContent = '00'\r\n    }\r\n  } \r\n  \r\n  workClock()\r\n\r\n}\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);\n\n//# sourceURL=webpack:///./modules/timer.js?");
 
 /***/ }),
@@ -57,9 +54,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!**************************!*\
   !*** ./modules/valid.js ***!
   \**************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (19:4)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|   textarea.addEventListener('input', (e) => {\\n|     e.target.value = e.target.value.replace(/[^\\\\sа-яА-Я-]+/i, \\\"\\\")\\n>   })a -m \\\"create\\\"\\n| \\n|   inputsEmail.forEach((item) => {\");\n\n//# sourceURL=webpack:///./modules/valid.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\r\n\r\nconst valid = () => {\r\n\r\n  const inputsText = document.querySelectorAll('input[type = text]')\r\n  const inputsEmail = document.querySelectorAll('input[type = email]')\r\n  const inputsTel = document.querySelectorAll('input[type = tel]')\r\n  const textarea = document.getElementById('form2-message')\r\n\r\n\r\n  inputsText.forEach((item) => {\r\n    item.addEventListener('input', (e) => {\r\n      e.target.value = e.target.value.replace(/[^\\sа-яА-Я-]+/i, \"\")\r\n    })\r\n  })\r\n\r\n  textarea.addEventListener('input', (e) => {\r\n    e.target.value = e.target.value.replace(/[^\\sа-яА-Я-]+/i, \"\")\r\n  })\r\n\r\n  inputsEmail.forEach((item) => {\r\n    item.addEventListener('input', (e) => {\r\n      e.target.value = e.target.value.replace(/[^\\w@_\\-.!~*']+/, \"\")\r\n    })\r\n  })\r\n\r\n  inputsTel.forEach((item) => {\r\n    item.addEventListener('input', (e) => {\r\n      e.target.value = e.target.value.replace(/[^\\d()-]+/, \"\")\r\n    })\r\n  })\r\n\r\n }\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valid);\n\n//# sourceURL=webpack:///./modules/valid.js?");
 
 /***/ })
 

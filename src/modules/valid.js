@@ -16,7 +16,7 @@ const valid = () => {
 
   textarea.addEventListener('input', (e) => {
     e.target.value = e.target.value.replace(/[^\sа-яА-Я-]+/i, "")
-  })a -m "create"
+  })
 
   inputsEmail.forEach((item) => {
     item.addEventListener('input', (e) => {
